@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mario-Style Platformer</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Phaser.js v3 CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.js"></script>
+</head>
+<body>
+  <div id="game-container"></div>
+  <div id="start-screen">
+    <div class="start-content">
+      <h1>Mario-Style Platformer</h1>
+      <button id="play-btn">Play</button>
+    </div>
+  </div>
+  <div id="landscape-overlay" style="display:none;">
+    <div class="overlay-content">
+      <p>Please rotate your device to landscape mode to play!</p>
+    </div>
+  </div>
+  <div id="mobile-controls" style="display:none;">
+    <div class="mobile-left">
+      <button id="btn-left" class="mobile-btn">&#8592;</button>
+      <button id="btn-right" class="mobile-btn">&#8594;</button>
+    </div>
+    <div class="mobile-right">
+      <button id="btn-jump" class="mobile-btn">&#8593;</button>
+    </div>
+  </div>
+  <script src="main.js"></script>
+</body>
+</html> 
