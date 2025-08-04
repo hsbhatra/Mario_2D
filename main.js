@@ -178,6 +178,18 @@ document.addEventListener('DOMContentLoaded', function() {
   if (playBtn) {
     playBtn.addEventListener('click', hideStartScreen);
   }
+  
+  // Add keyboard event listeners for Space and Enter keys
+  document.addEventListener('keydown', function(event) {
+    // Only trigger if start screen is visible and game hasn't started
+    if (document.getElementById('start-screen').style.display !== 'none' && !gameStarted) {
+      if (event.code === 'Space' || event.code === 'Enter') {
+        event.preventDefault(); // Prevent default behavior (page scroll for space)
+        hideStartScreen();
+      }
+    }
+  });
+  
   showStartScreen();
 });
 

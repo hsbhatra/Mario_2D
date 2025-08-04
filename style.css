@@ -18,6 +18,17 @@ body {
   align-items: center;
   justify-content: center;
 }
+
+/* Mobile-specific game container adjustments */
+@media (max-width: 900px) {
+  #game-container {
+    width: calc(100vw - 120px); /* Reduce width to avoid control buttons */
+    height: calc(100vh - 120px); /* Reduce height to avoid control buttons */
+    max-width: calc(100vw - 120px);
+    max-height: calc(100vh - 120px);
+    margin: 60px; /* Add margin from all sides */
+  }
+}
 canvas {
   width: 100% !important;
   height: 100% !important;
@@ -103,6 +114,39 @@ canvas {
   padding: 2em 3em;
   border-radius: 1em;
   box-shadow: 0 0 20px #0008;
+  max-width: 500px;
+  width: 90%;
+}
+
+.instructions {
+  text-align: left;
+  margin: 1.5em 0;
+  padding: 1em;
+  background: #333;
+  border-radius: 0.5em;
+  border: 1px solid #555;
+}
+
+.instructions h3 {
+  color: #28a745;
+  margin: 0 0 0.5em 0;
+  font-size: 1.1em;
+  text-align: center;
+}
+
+.instructions ul {
+  margin: 0.5em 0;
+  padding-left: 1.5em;
+}
+
+.instructions li {
+  margin: 0.3em 0;
+  font-size: 0.9em;
+  line-height: 1.4;
+}
+
+.instructions strong {
+  color: #ffd700;
 }
 #play-btn {
   font-size: 1.5em;
