@@ -178,6 +178,15 @@ document.addEventListener('DOMContentLoaded', function() {
   if (playBtn) {
     playBtn.addEventListener('click', hideStartScreen);
   }
+  
+  // Add keyboard event listeners for starting the game
+  document.addEventListener('keydown', function(event) {
+    if (!gameStarted && (event.code === 'Space' || event.code === 'Enter')) {
+      event.preventDefault(); // Prevent space from scrolling the page
+      hideStartScreen();
+    }
+  });
+  
   showStartScreen();
   
   // Ensure mobile controls are properly initialized
