@@ -49,6 +49,9 @@ canvas {
   width: 100vw;
   height: 100vh;
   pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 .mobile-left {
   position: absolute;
@@ -67,25 +70,28 @@ canvas {
   align-items: flex-end;
 }
 .mobile-btn {
-  font-size: 1.5em;
-  width: 50px;
-  height: 50px;
+  font-size: 2em;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  border: none;
-  background: #222;
+  border: 3px solid #fff;
+  background: rgba(34, 34, 34, 0.8);
   color: #fff;
-  opacity: 0.9;
-  box-shadow: 0 2px 8px #0008;
+  opacity: 1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
   pointer-events: auto;
-  margin: 5px;
-  transition: background 0.2s;
+  margin: 8px;
+  transition: all 0.2s;
   touch-action: none;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-weight: bold;
 }
 .mobile-btn:active {
-  background: #444;
+  background: rgba(68, 68, 68, 0.9);
+  transform: scale(0.95);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
 }
 @media (min-width: 900px) {
   #mobile-controls { display: none !important; }

@@ -179,6 +179,9 @@ document.addEventListener('DOMContentLoaded', function() {
     playBtn.addEventListener('click', hideStartScreen);
   }
   showStartScreen();
+  
+  // Ensure mobile controls are properly initialized
+  setTimeout(checkMobileControls, 100);
 });
 
 function update() {
@@ -324,12 +327,13 @@ window.addEventListener('resize', checkLandscapeOverlay);
 window.addEventListener('orientationchange', checkLandscapeOverlay);
 document.addEventListener('DOMContentLoaded', checkLandscapeOverlay);
 
-// Show mobile controls if on mobile and in landscape
+// Show mobile controls if on mobile
 function checkMobileControls() {
   const controls = document.getElementById('mobile-controls');
-  const isMobile = /Mobi|Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
-  const isPortrait = window.innerHeight > window.innerWidth;
-  if (isMobile && !isPortrait) {
+  const isMobile = /Mobi|Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent) || 
+                   ('ontouchstart' in window) || 
+                   (navigator.maxTouchPoints > 0);
+  if (isMobile) {
     controls.style.display = 'flex';
   } else {
     controls.style.display = 'none';
@@ -366,5 +370,6 @@ function setupMobileButtons() {
   btnJump.addEventListener('mouseleave', e => { e.preventDefault(); mobileJump = false; });
 }
 document.addEventListener('DOMContentLoaded', setupMobileButtons);
+document.addEventListener('DOMContentLoaded', checkMobileControls);
 
 const game = new Phaser.Game(config); 
