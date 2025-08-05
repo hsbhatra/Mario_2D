@@ -13,6 +13,16 @@
   <div id="start-screen">
     <div class="start-content">
       <h1>Mario-Style Platformer</h1>
+      <div id="desktop-instructions" class="game-instructions">
+        <p><strong>Goal:</strong> Collect coins and reach the flag!</p>
+        <p><strong>Controls:</strong> Use arrow keys or WASD to move, Space to jump</p>
+        <p><strong>Combat:</strong> Jump on zombies to defeat them, avoid side contact</p>
+      </div>
+      <div id="mobile-instructions" class="game-instructions" style="display:none;">
+        <p><strong>Goal:</strong> Collect coins and reach the flag!</p>
+        <p><strong>Controls:</strong> Use the arrow buttons below to move and jump</p>
+        <p><strong>Combat:</strong> Jump on zombies to defeat them, avoid side contact</p>
+      </div>
       <button id="play-btn">Play</button>
     </div>
   </div>
@@ -28,6 +38,11 @@
     </div>
     <div class="mobile-right">
       <button id="btn-jump" class="mobile-btn">&#8593;</button>
+    </div>
+  </div>
+  <div id="mobile-scroll-message" style="display:none;">
+    <div class="scroll-content">
+      <p>Scroll down to see the full game!</p>
     </div>
   </div>
   <script src="main.js"></script>
