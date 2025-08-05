@@ -167,11 +167,6 @@ function showStartScreen() {
 }
 function hideStartScreen() {
   document.getElementById('start-screen').style.display = 'none';
-  // Hide scroll message when game starts
-  const scrollMessage = document.getElementById('mobile-scroll-message');
-  if (scrollMessage) {
-    scrollMessage.style.display = 'none';
-  }
   game.scene.scenes[0].scene.resume();
   gameStarted = true;
   // Set all zombies moving left and facing left
@@ -344,7 +339,6 @@ document.addEventListener('DOMContentLoaded', checkLandscapeOverlay);
 // Show mobile controls if on mobile
 function checkMobileControls() {
   const controls = document.getElementById('mobile-controls');
-  const scrollMessage = document.getElementById('mobile-scroll-message');
   const desktopInstructions = document.getElementById('desktop-instructions');
   const mobileInstructions = document.getElementById('mobile-instructions');
   
@@ -356,20 +350,10 @@ function checkMobileControls() {
     controls.style.display = 'flex';
     if (desktopInstructions) desktopInstructions.style.display = 'none';
     if (mobileInstructions) mobileInstructions.style.display = 'block';
-    
-    // Show scroll message for mobile devices only if game hasn't started
-    if (scrollMessage && !gameStarted) {
-      scrollMessage.style.display = 'block';
-      // Hide the message after 3 seconds
-      setTimeout(() => {
-        scrollMessage.style.display = 'none';
-      }, 3000);
-    }
   } else {
     controls.style.display = 'none';
     if (desktopInstructions) desktopInstructions.style.display = 'block';
     if (mobileInstructions) mobileInstructions.style.display = 'none';
-    if (scrollMessage) scrollMessage.style.display = 'none';
   }
 }
 window.addEventListener('resize', checkMobileControls);
@@ -378,6 +362,9 @@ document.addEventListener('DOMContentLoaded', checkMobileControls);
 
 // Mobile button state
 let mobileLeft = false, mobileRight = false, mobileJump = false;
+let currentSlide = 1;
+const totalSlides = 2;
+
 function setupMobileButtons() {
   const btnLeft = document.getElementById('btn-left');
   const btnRight = document.getElementById('btn-right');
@@ -402,7 +389,53 @@ function setupMobileButtons() {
   btnJump.addEventListener('mouseup', e => { e.preventDefault(); mobileJump = false; });
   btnJump.addEventListener('mouseleave', e => { e.preventDefault(); mobileJump = false; });
 }
+
+function setupInstructionSlideshow() {
+  const prevBtn = document.querySelector('.prev-btn');
+  const nextBtn = document.querySelector('.next-btn');
+  const indicator = document.querySelector('.slide-indicator');
+  
+  if (!prevBtn || !nextBtn || !indicator) return;
+  
+  function updateSlide() {
+    // Hide all slides
+    document.querySelectorAll('.instruction-slide').forEach(slide => {
+      slide.classList.remove('active');
+    });
+    
+    // Show current slide
+    const currentSlideElement = document.querySelector(`[data-slide="${currentSlide}"]`);
+    if (currentSlideElement) {
+      currentSlideElement.classList.add('active');
+    }
+    
+    // Update indicator
+    indicator.textContent = `${currentSlide}/${totalSlides}`;
+    
+    // Update button states
+    prevBtn.disabled = currentSlide === 1;
+    nextBtn.disabled = currentSlide === totalSlides;
+  }
+  
+  prevBtn.addEventListener('click', () => {
+    if (currentSlide > 1) {
+      currentSlide--;
+      updateSlide();
+    }
+  });
+  
+  nextBtn.addEventListener('click', () => {
+    if (currentSlide < totalSlides) {
+      currentSlide++;
+      updateSlide();
+    }
+  });
+  
+  // Initialize
+  updateSlide();
+}
 document.addEventListener('DOMContentLoaded', setupMobileButtons);
+document.addEventListener('DOMContentLoaded', setupInstructionSlideshow);
 document.addEventListener('DOMContentLoaded', checkMobileControls);
 
 const game = new Phaser.Game(config); 
