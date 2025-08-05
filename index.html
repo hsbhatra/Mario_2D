@@ -14,14 +14,26 @@
     <div class="start-content">
       <h1>Mario-Style Platformer</h1>
       <div id="desktop-instructions" class="game-instructions">
+        <h3>Instructions</h3>
         <p><strong>Goal:</strong> Collect coins and reach the flag!</p>
         <p><strong>Controls:</strong> Use arrow keys or WASD to move, Space to jump</p>
         <p><strong>Combat:</strong> Jump on zombies to defeat them, avoid side contact</p>
       </div>
       <div id="mobile-instructions" class="game-instructions" style="display:none;">
-        <p><strong>Goal:</strong> Collect coins and reach the flag!</p>
-        <p><strong>Controls:</strong> Use the arrow buttons below to move and jump</p>
-        <p><strong>Combat:</strong> Jump on zombies to defeat them, avoid side contact</p>
+        <h3>Instructions</h3>
+        <div class="instruction-slide active" data-slide="1">
+          <p><strong>Goal:</strong> Collect coins and reach the flag!</p>
+          <p><strong>Controls:</strong> Use the arrow buttons below to move and jump</p>
+        </div>
+        <div class="instruction-slide" data-slide="2">
+          <p><strong>Combat:</strong> Jump on zombies to defeat them, avoid side contact</p>
+          <p><strong>NOTE:</strong> Scroll down if the game doesn't take full screen automatically</p>
+        </div>
+        <div class="slide-controls">
+          <button class="slide-btn prev-btn">&#8592;</button>
+          <span class="slide-indicator">1/2</span>
+          <button class="slide-btn next-btn">&#8594;</button>
+        </div>
       </div>
       <button id="play-btn">Play</button>
     </div>
