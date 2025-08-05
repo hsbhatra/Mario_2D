@@ -167,6 +167,11 @@ function showStartScreen() {
 }
 function hideStartScreen() {
   document.getElementById('start-screen').style.display = 'none';
+  // Hide scroll message when game starts
+  const scrollMessage = document.getElementById('mobile-scroll-message');
+  if (scrollMessage) {
+    scrollMessage.style.display = 'none';
+  }
   game.scene.scenes[0].scene.resume();
   gameStarted = true;
   // Set all zombies moving left and facing left
@@ -352,8 +357,8 @@ function checkMobileControls() {
     if (desktopInstructions) desktopInstructions.style.display = 'none';
     if (mobileInstructions) mobileInstructions.style.display = 'block';
     
-    // Show scroll message for mobile devices
-    if (scrollMessage) {
+    // Show scroll message for mobile devices only if game hasn't started
+    if (scrollMessage && !gameStarted) {
       scrollMessage.style.display = 'block';
       // Hide the message after 3 seconds
       setTimeout(() => {
