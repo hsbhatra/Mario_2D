@@ -339,13 +339,32 @@ document.addEventListener('DOMContentLoaded', checkLandscapeOverlay);
 // Show mobile controls if on mobile
 function checkMobileControls() {
   const controls = document.getElementById('mobile-controls');
+  const scrollMessage = document.getElementById('mobile-scroll-message');
+  const desktopInstructions = document.getElementById('desktop-instructions');
+  const mobileInstructions = document.getElementById('mobile-instructions');
+  
   const isMobile = /Mobi|Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent) || 
                    ('ontouchstart' in window) || 
                    (navigator.maxTouchPoints > 0);
+  
   if (isMobile) {
     controls.style.display = 'flex';
+    if (desktopInstructions) desktopInstructions.style.display = 'none';
+    if (mobileInstructions) mobileInstructions.style.display = 'block';
+    
+    // Show scroll message for mobile devices
+    if (scrollMessage) {
+      scrollMessage.style.display = 'block';
+      // Hide the message after 3 seconds
+      setTimeout(() => {
+        scrollMessage.style.display = 'none';
+      }, 3000);
+    }
   } else {
     controls.style.display = 'none';
+    if (desktopInstructions) desktopInstructions.style.display = 'block';
+    if (mobileInstructions) mobileInstructions.style.display = 'none';
+    if (scrollMessage) scrollMessage.style.display = 'none';
   }
 }
 window.addEventListener('resize', checkMobileControls);
