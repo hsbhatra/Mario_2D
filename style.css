@@ -22,11 +22,17 @@ body {
 /* Mobile-specific game container adjustments */
 @media (max-width: 900px) {
   #game-container {
-    width: calc(100vw - 120px); /* Reduce width to avoid control buttons */
-    height: calc(100vh - 120px); /* Reduce height to avoid control buttons */
-    max-width: calc(100vw - 120px);
-    max-height: calc(100vh - 120px);
-    margin: 60px; /* Add margin from all sides */
+    width: 100vw;
+    height: 100vh;
+    max-width: 100vw;
+    max-height: 100vh;
+    padding: 80px 20px 120px 20px; /* Top, right, bottom, left padding */
+    box-sizing: border-box;
+  }
+  
+  /* Ensure mobile controls are visible */
+  #mobile-controls {
+    display: flex !important;
   }
 }
 canvas {
@@ -63,34 +69,37 @@ canvas {
 }
 .mobile-left {
   position: absolute;
-  left: 2vw;
-  bottom: 2vw;
+  left: 20px;
+  bottom: 20px;
   display: flex;
   flex-direction: row;
-  gap: 2vw;
+  gap: 10px;
 }
 .mobile-right {
   position: absolute;
-  right: 2vw;
-  bottom: 2vw;
+  right: 20px;
+  bottom: 20px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 }
 .mobile-btn {
-  font-size: 2em;
-  width: 48px;
-  height: 48px;
+  font-size: 1.5em;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   border: none;
   background: #222;
   color: #fff;
-  opacity: 0.85;
+  opacity: 0.9;
   box-shadow: 0 2px 8px #0008;
   pointer-events: auto;
-  margin: 0.5vw;
+  margin: 5px;
   transition: background 0.2s;
   touch-action: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .mobile-btn:active {
   background: #444;
