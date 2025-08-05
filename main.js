@@ -363,7 +363,7 @@ document.addEventListener('DOMContentLoaded', checkMobileControls);
 // Mobile button state
 let mobileLeft = false, mobileRight = false, mobileJump = false;
 let currentSlide = 1;
-const totalSlides = 2;
+const totalSlides = 4;
 
 function setupMobileButtons() {
   const btnLeft = document.getElementById('btn-left');
